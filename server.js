@@ -7,13 +7,13 @@ const routes = require('./routes');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose'); //para modelagem 
+const { middlewareGlobal } = require('./src/middlewares/middlewares');
  
 //arquivos estáticos (Ejs)
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded()); //parser
-app.use(routes);
-app.use(flash());
+
 
 //conectando mongoose ao mongoDB, passando a chave de conexão fornecida
 mongoose.connect(process.env.CONNECTIONSTRING)
@@ -34,11 +34,17 @@ const sessionOptions = session({
   }
 });
 app.use(sessionOptions);
+app.use(flash());
+
+
 
 //view, ejs
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 
+app.use(middlewareGlobal);
+
+app.use(routes); 
 app.on('pronto', () => {
   app.listen(3000, () => {
     console.log('Acessar http://localhost:3000');
