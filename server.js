@@ -11,6 +11,7 @@ const mongoose = require('mongoose'); //para modelagem
 //arquivos estáticos (Ejs)
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.json());
+app.use(express.urlencoded()); //parser
 app.use(routes);
 app.use(flash());
 
