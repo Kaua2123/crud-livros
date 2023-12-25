@@ -6,16 +6,20 @@ const { isLogged } = require('./src/middlewares/middlewares');
 //controllers
 const homeController = require('./src/controllers/homeController');
 const userController = require('./src/controllers/userController');
+const bookController = require('./src/controllers/bookController');
 
 // Rotas da home
 route.get('/', homeController.index);
 
-// Rotas de usuário
+// Usuário
 route.get('/user/cadastro', userController.indexCadastro);
 route.post('/user/cadastro/post', userController.postUser);
 route.get('/user/login', userController.indexLogin);
 route.post('/user/login/post', userController.loginUser);
 route.get('/user/login/logout', userController.logoutUser);
+
+// Livros
+route.get('/book/index', bookController.bookIndex)
 
 
 module.exports = route;
