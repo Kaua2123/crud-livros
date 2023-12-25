@@ -17,13 +17,10 @@ exports.postUser = async function(req, res) {
             return;
         }
        req.flash('success', 'Você foi cadastrado com sucesso!')
-    //    console.log(req.flash('success'))
         req.session.save(() => {
              res.redirect('/user/cadastro')
         })
-       console.log(req.flash);
        
-
         return;
     } catch (error) {
         console.log(error);

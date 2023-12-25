@@ -5,3 +5,4 @@ exports.middlewareGlobal = async function(req, res, next) {
 
     next();
 }
+

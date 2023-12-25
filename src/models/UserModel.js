@@ -22,9 +22,16 @@ class User {
 
     async register () {
         this.valida();
+
         const hashPassword = bcrypt.hashSync(this.password, 8)
-    
-        await UserModel.create({nome: this.nome, email: this.email, password: hashPassword});
+        
+        const buscaEmail = await UserModel.findOne({ email: this.email }); // se já existe um email igual
+        if(buscaEmail != null) {
+            this.errors.push('Usuário já existe.');
+            return;
+        }
+
+        this.user = await UserModel.create({nome: this.nome, email: this.email, password: hashPassword});
     }
 
     valida () {
@@ -33,7 +40,11 @@ class User {
 
         if(!validator.isEmail(this.email)) this.errors.push('Preencha um email válido.');
         if(this.errors.length > 0) return;
+
+        
     }
+
+
 }
 
 module.exports = User;
