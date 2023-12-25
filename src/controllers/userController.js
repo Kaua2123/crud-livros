@@ -10,17 +10,18 @@ exports.postUser = async function(req, res) {
         await user.register();
 
         if(user.errors.length > 0) {
-            req.flash('error', user.errors);
+            req.flash('errors', user.errors);
             req.session.save(() => {
-                return res.redirect('/user/cadastro')
+                res.redirect('/user/cadastro')
             })
             return;
         }
-        req.flash('success', user.success);
+       req.flash('success', 'Você foi cadastrado com sucesso!')
+    //    console.log(req.flash('success'))
         req.session.save(() => {
-            return res.redirect('/user/cadastro')
+             res.redirect('/user/cadastro')
         })
-       
+       console.log(req.flash);
        
 
         return;

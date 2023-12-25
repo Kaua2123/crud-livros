@@ -1,10 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
+const flash = require('connect-flash');
 const path = require('path');
 const app = express();
 const routes = require('./routes');
-const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose'); //para modelagem 
 const { middlewareGlobal } = require('./src/middlewares/middlewares');
@@ -29,14 +29,13 @@ const sessionOptions = session({
   resave: false,
   saveUninitialized: false,
   cookie: {
+    secure: false,
     maxAge: 1000 * 60 * 60 * 24 * 7,
     httpOnly: true
   }
 });
 app.use(sessionOptions);
 app.use(flash());
-
-
 
 //view, ejs
 app.set('views', path.resolve(__dirname, 'src', 'views'));
