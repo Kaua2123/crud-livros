@@ -43,14 +43,13 @@ class User {
     async login () {
         this.valida();
         
-        let user = await UserModel.findOne({nome: this.nome, email: this.email});
+        let user = await UserModel.findOne({ nome: this.nome, email: this.email });
 
         if(user != null) {
             const comparador = bcrypt.compareSync(this.password, user.password)
             if(!comparador) this.errors.push('Incorreto. Verifique seu email ou senha.') 
 
-            user = await UserModel.findOne({nome: this.nome, email:this.email, password: user.password})
-            console.log(user);
+            user = await UserModel.findOne({ nome: this.nome, email: this.email, password: user.password })
         }
         else {
             this.errors.push('Usuário não encontrado.')

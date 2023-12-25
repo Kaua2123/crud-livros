@@ -16,7 +16,7 @@ exports.postUser = async function(req, res) {
             })
             return;
         }
-       req.flash('success', 'Você foi cadastrado com sucesso!')
+        req.flash('success', 'Você foi cadastrado com sucesso!')
         req.session.save(() => {
              res.redirect('/user/cadastro')
         })
@@ -45,8 +45,8 @@ exports.loginUser = async function(req, res) {
             })
             return;
         }
-
-        req.flash('success', 'Você entrou na sua conta.')
+        req.session.sessao = 'logado'
+        req.flash('success', 'Você entrou na sua conta.');
         req.session.save(() => {
             res.redirect('/user/login')
         })
@@ -54,5 +54,18 @@ exports.loginUser = async function(req, res) {
         return;
     } catch (e) {
         console.log(e);
+        return res.render('404');
+    }
+}
+exports.logoutUser = async function(req, res) {
+    try {
+        req.session.destroy(function () {
+            console.log('você foi deslogado!');
+            res.redirect('/');
+        });
+        return; 
+    } catch (e) {
+        console.log(e);
+        return res.render('404');
     }
 }
