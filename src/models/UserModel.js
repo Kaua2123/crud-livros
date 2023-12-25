@@ -26,12 +26,10 @@ class User {
         const hashPassword = bcrypt.hashSync(this.password, 8)
         
         const buscaEmail = await UserModel.findOne({ email: this.email }); // se já existe um email igual
-        if(buscaEmail != null) {
-            this.errors.push('Usuário já existe.');
-            return;
-        }
+        if(buscaEmail != null) this.errors.push('Usuário já existe.');
+        if(this.errors.length > 0) return;
 
-        this.user = await UserModel.create({nome: this.nome, email: this.email, password: hashPassword});
+        this.user = await UserModel.create({ nome: this.nome, email: this.email, password: hashPassword });
     }
 
     valida () {
@@ -40,8 +38,24 @@ class User {
 
         if(!validator.isEmail(this.email)) this.errors.push('Preencha um email válido.');
         if(this.errors.length > 0) return;
+    }
 
+    async login () {
+        this.valida();
         
+        let user = await UserModel.findOne({nome: this.nome, email: this.email});
+
+        if(user != null) {
+            const comparador = bcrypt.compareSync(this.password, user.password)
+            if(!comparador) this.errors.push('Incorreto. Verifique seu email ou senha.') 
+
+            user = await UserModel.findOne({nome: this.nome, email:this.email, password: user.password})
+            console.log(user);
+        }
+        else {
+            this.errors.push('Usuário não encontrado.')
+            return;
+        }
     }
 
 

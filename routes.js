@@ -12,6 +12,7 @@ route.get('/', homeController.index);
 route.get('/user/cadastro', userController.indexCadastro);
 route.post('/user/cadastro/post', userController.postUser);
 route.get('/user/login', userController.indexLogin);
+route.post('/user/login/post', userController.loginUser);
 
 
 module.exports = route;
