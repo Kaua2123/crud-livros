@@ -1,7 +1,7 @@
 <%- include('includes/head') %>
 <%- include('includes/nav') %>
 
-
+<%- include('includes/feedback') %>
 
 <div class="container-flex text-center  p-3 mb-5 bg-body rounded" style="margin-top: 80px; width: 80%; margin-left: auto; margin-right: auto;">
   <div class="row justify-content-center">
@@ -21,12 +21,14 @@
         <input type="text" style="margin-left: 5px;" name="autor" class="form-control">
         <label class="form-label">Editora</label>
         <input type="text" style="margin-left: 5px;" name="editora" class="form-control">
+        
+        <button type="submit" style="margin-top: 20px; width: 300px; font-weight: bold; " class="btn btn-primary btn-lg">Cadastrar</button>
       </form>
-      <button type="submit" style="margin-top: 20px; width: 300px; font-weight: bold; " class="btn btn-primary btn-lg">Cadastrar</button>
+      
     </div>
   </div>
 </div>
 
-<%- include('includes/feedback') %>
+
 
 <%- include('includes/footer') %>
