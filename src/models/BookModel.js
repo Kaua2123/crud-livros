@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const BookSchema = new mongoose.Schema({
     nome: { type: String, required: true },
     genero: { type: String, required: true },
@@ -35,6 +36,10 @@ class Book {
         if (!this.nome || !this.genero || !this.autor || !this.editora) this.errors.push('Todos os campos são obrigatórios.');
         if (this.errors.length > 0) return;
         
+    }
+
+    async deleteBook(id) {
+        await BookModel.findByIdAndDelete({_id: id});
     }
 
     static async searchBooks () {

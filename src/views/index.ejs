@@ -12,14 +12,16 @@
     <% books.forEach(book => { %>
       <div class="col-lg-3 my-3">
         <div class="card" style="width: 18rem;">
+          <form action="/book/delete/<%= book._id%>" method="post"> 
           <div class="card-body">
             <h5 class="card-title"> <%= book.nome %> </h5>
             <p class="card-text">  Gênero: <%= book.genero %>  </p>
             <p class="card-text">  Autor: <%= book.autor %>  </p>
             <p class="card-text">  Editora: <%= book.editora %>  </p>
             <p class="card-text"><small class="text-muted"> <%= book.dataPublicacao %> o</small></p>
-            <button class="btn btn-primary" style="margin-left: 110px;">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
+            <a type="submit" act class="btn btn-primary" style="margin-left: 110px;">Editar</a>
+            <button type="submit"  class="btn btn-danger"> Excluir</button>
+          </form>
           </div>
         </div>
       </div>
