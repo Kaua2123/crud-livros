@@ -6,38 +6,24 @@
     <div class="col-lg-2"></div>
 
     <div class="col-lg-8 my-3">
-      <h1 class="text-center text-primary">Livraria Online </h1>
-    </div>
-
-    <div class="card-deck my-3">
-      <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Descriçaõ do livro</p>
-          <p class="card-text"><small class="text-muted">DATA de publicação</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Descriçaõ do livro</p>
-          <p class="card-text"><small class="text-muted">DAta de publicação</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Descrição do livro</p>
-          <p class="card-text"><small class="text-muted">DAta de publicação</small></p>
-        </div>
-      </div>
+      <p class="text-center fw-bold" style="font-size: 50px; color: cornflowerblue;">Livraria Online</p>
     </div>
     
-
-    
+    <% books.forEach(book => { %>
+      <div class="col-lg-3 my-3">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"> <%= book.nome %> </h5>
+            <p class="card-text">  Gênero: <%= book.genero %>  </p>
+            <p class="card-text">  Autor: <%= book.autor %>  </p>
+            <p class="card-text">  Editora: <%= book.editora %>  </p>
+            <p class="card-text"><small class="text-muted"> <%= book.dataPublicacao %> o</small></p>
+            <button class="btn btn-primary" style="margin-left: 110px;">Editar</button>
+            <button class="btn btn-danger">Excluir</button>
+          </div>
+        </div>
+      </div>
+    <% }); %>
 
     <div class="col-lg-2"></div>
   </div>

@@ -20,7 +20,7 @@ route.get('/user/login/logout', userController.logoutUser);
 
 // Livros
 route.get('/book/index', bookController.bookIndex);
-route.post('/book/index/post', bookController.postBook);
+route.post('/book/index/post', isLogged, bookController.postBook);
 
 
 module.exports = route;

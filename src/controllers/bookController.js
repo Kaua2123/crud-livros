@@ -7,7 +7,7 @@ exports.bookIndex = async function(req, res) {
 exports.postBook = async function(req, res) {
     const book = new BookModel(req.body);
     await book.createBook();
-
+    req.session.books = book;
     if(book.errors.length > 0) {
         req.flash('errors', book.errors);
         req.session.save(() => {

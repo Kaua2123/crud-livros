@@ -18,6 +18,7 @@ class Book {
         this.autor = body.autor;
         this.editora = body.editora;
         this.errors = [];
+        this.books = null;
     }
 
     async createBook() {
@@ -26,7 +27,7 @@ class Book {
         const buscaLivro = await BookModel.findOne({ nome: this.nome });
         if (buscaLivro != null) this.errors.push('Já existe um livro com esse nome.');
         if (this.errors.length > 0) return;
-        
+
         await BookModel.create({ nome: this.nome, genero: this.genero, autor: this.autor, editora: this.editora});
     }
 
@@ -34,6 +35,11 @@ class Book {
         if (!this.nome || !this.genero || !this.autor || !this.editora) this.errors.push('Todos os campos são obrigatórios.');
         if (this.errors.length > 0) return;
         
+    }
+
+    static async searchBooks () {
+        const books = await BookModel.find();
+        return books;
     }
 }
 
