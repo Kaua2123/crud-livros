@@ -1,18 +1,32 @@
 <%- include('includes/head') %>
 <%- include('includes/nav') %>
 
-<%- include('includes/feedback') %>
 
-<div class="container-flex text-center custom-box shadow p-3 mb-5 bg-body rounded" style="margin-top: 80px; width: 80%; margin-left: auto; margin-right: auto;">
+
+<div class="container-flex text-center  p-3 mb-5 bg-body rounded" style="margin-top: 80px; width: 80%; margin-left: auto; margin-right: auto;">
   <div class="row justify-content-center">
     <div class="col">
-      <p class="text-center fs-1 fw-bold text-primary">Livraria Online</p>
-      <p class="text-center text-primary">Viaje entre mundos com a sua imaginação</p>
+      <p class="text-center fw-bold" style="font-size: 50px; margin-top: 150px; color: cornflowerblue;">Livraria Online</p>
+      <p class="text-center ">Viaje entre mundos com a sua imaginação</p>
     </div>
     <div class="col">
-      <div class="form-control"></div>
+      <p class="text-center fs-3 fw-bold" style="color: cornflowerblue;">Cadastre um livro</p>
+      <p class="text-center">Compartilhe conosco a sua obra!</p>
+      <form class="form" action='/book/index/post' method="post" style="margin-top: 30px; text-align: left;">
+        <label class="form-label">Nome</label>
+        <input type="text" style="margin-left: 5px;" name="nome" class="form-control">
+        <label class="form-label">Gênero</label>
+        <input type="text" style="margin-left: 5px;" name="genero" class="form-control">
+        <label class="form-label">Autor</label>
+        <input type="text" style="margin-left: 5px;" name="autor" class="form-control">
+        <label class="form-label">Editora</label>
+        <input type="text" style="margin-left: 5px;" name="editora" class="form-control">
+      </form>
+      <button type="submit" style="margin-top: 20px; width: 300px; font-weight: bold; " class="btn btn-primary btn-lg">Cadastrar</button>
     </div>
   </div>
 </div>
+
+<%- include('includes/feedback') %>
 
 <%- include('includes/footer') %>

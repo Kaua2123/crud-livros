@@ -9,3 +9,13 @@ const BookSchema = new mongoose.Schema({
 })
 
 const BookModel = mongoose.model('Books', BookSchema);
+
+class Book {
+    constructor(body) {
+        
+    }
+
+    createBook() {
+
+    }
+}

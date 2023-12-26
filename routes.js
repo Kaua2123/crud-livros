@@ -19,7 +19,8 @@ route.post('/user/login/post', userController.loginUser);
 route.get('/user/login/logout', userController.logoutUser);
 
 // Livros
-route.get('/book/index', bookController.bookIndex)
+route.get('/book/index', bookController.bookIndex);
+route.post('/book/index/post', bookController.postBook);
 
 
 module.exports = route;
