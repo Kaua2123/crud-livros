@@ -31,7 +31,6 @@ exports.postBook = async function(req, res) {
 exports.deleteBook = async function(req, res) {
     try {
         const book = new BookModel(req.body);
-        console.log(req.params)
         book.deleteBook(req.params.id);
         req.flash('success', 'Livro deletado.');
         req.session.save(() => {
@@ -44,4 +43,19 @@ exports.deleteBook = async function(req, res) {
     }
 
 
+}
+
+exports.updateBook = async function(req, res) {
+    try {
+        const book = new BookModel(req.body);
+        book.updateBook(req.params.id);
+        req.flash('success', 'Livro atualizado.');
+        req.session.save(() => {
+            res.redirect('back');
+        })
+        return;
+    } catch (error) {
+        res.render('404');
+        console.log(error);
+    }
 }

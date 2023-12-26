@@ -29,13 +29,23 @@ class Book {
         if (buscaLivro != null) this.errors.push('Já existe um livro com esse nome.');
         if (this.errors.length > 0) return;
 
-        await BookModel.create({ nome: this.nome, genero: this.genero, autor: this.autor, editora: this.editora});
+        await BookModel.create({ nome: this.nome, genero: this.genero, autor: this.autor, editora: this.editora });
     }
 
     valida() {
         if (!this.nome || !this.genero || !this.autor || !this.editora) this.errors.push('Todos os campos são obrigatórios.');
         if (this.errors.length > 0) return;
         
+    }
+
+    async updateBook(id) {
+        this.valida();
+
+        const buscaLivro = await BookModel.findOne({ nome: this.nome });
+        if (buscaLivro != null) this.errors.push('Já existe um livro com esse nome.');
+        if (this.errors.length > 0) return;
+
+        await BookModel.findByIdAndUpdate({_id: id,}, {nome: this.nome, genero: this.genero, autor: this.autor, editora: this.editora });
     }
 
     async deleteBook(id) {
@@ -46,6 +56,7 @@ class Book {
         const books = await BookModel.find();
         return books;
     }
+    
 }
 
 module.exports = Book;

@@ -9,6 +9,8 @@
       <p class="text-center fw-bold" style="font-size: 50px; color: cornflowerblue;">Livraria Online</p>
     </div>
     
+    <%- include('includes/feedback') %>
+
     <% books.forEach(book => { %>
       <div class="col-lg-3 my-3">
         <div class="card" style="width: 18rem;">
@@ -19,14 +21,54 @@
             <p class="card-text">  Autor: <%= book.autor %>  </p>
             <p class="card-text">  Editora: <%= book.editora %>  </p>
             <p class="card-text"><small class="text-muted"> <%= book.dataPublicacao %> o</small></p>
-            <a type="submit" act class="btn btn-primary" style="margin-left: 110px;">Editar</a>
-            <button type="submit"  class="btn btn-danger"> Excluir</button>
+            <button type="button" class="btn btn-primary" style="margin-left: 110px;" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</a>
+            <button type="submit"  class="btn btn-danger" style="margin-left: 5px;"> Excluir</button>
+
+              <!-- modal -->
+         
           </form>
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="exampleModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Editar livro</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
+            </div>
+            <div class="modal-body">
+          
+              <form action="/book/update/<%= book._id %>" method="post">
+              <div class="form-group">
+                <label>Nome</label>
+                <input  type="text" class="form-control nome" name="nome">
+              </div>
+              <div class="form-group">
+                <label>Gênero</label>
+                <input type="text" class="form-control sobrenome" name="genero">
+              </div>
+              <div class="form-group">
+                <label>Autor</label>
+                <input type="text" class="form-control email" name="autor">
+              </div>
+              <div class="form-group">
+                <label>Editora</label>
+                <input type="tel" class="form-control telefone" name="editora">
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Salvar</button>
+            </form>
+  
+            </div>
+      
+          </div>
+    
+        </div>
+      </div>
     <% }); %>
 
+    </div>
     <div class="col-lg-2"></div>
   </div>
 </div>
