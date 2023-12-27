@@ -10,7 +10,11 @@ exports.middlewareGlobal = async function(req, res, next) {
 
 exports.isLogged = async function(req, res, next) {
 
-    if (req.session.sessao != 'logado') req.flash('errors', 'Você precisa estar logado!');
+    if (req.session.sessao != 'logado') {
+        req.flash('errors', 'Você precisa estar logado!');
+        req.session.save(() => res.redirect('/'));
+        return;
+    } 
 
     next();
 }
