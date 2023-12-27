@@ -45,6 +45,18 @@ exports.deleteBook = async function(req, res) {
 
 }
 
+exports.updateIndex = async function(req, res) {
+    try {
+        const books = await BookModel.searchBooksById(req.params.id);
+        res.render('update-livros', { books })
+        
+    } catch (error) {
+        console.log(error);
+        return res.render('404');
+    }
+
+}
+
 exports.updateBook = async function(req, res) {
     try {
         const book = new BookModel(req.body);

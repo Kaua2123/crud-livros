@@ -56,6 +56,11 @@ class Book {
         const books = await BookModel.find();
         return books;
     }
+
+    static async searchBooksById (id) {
+        const books = await BookModel.findById(id);
+        return books;
+    }
     
 }
 

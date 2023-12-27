@@ -22,6 +22,7 @@ route.get('/user/login/logout', userController.logoutUser);
 route.get('/book/index', bookController.bookIndex);
 route.post('/book/index/post', isLogged, bookController.postBook);
 route.post('/book/delete/:id', isLogged, bookController.deleteBook);
+route.get('/book/updateIndex/:id', isLogged, bookController.updateIndex);
 route.post('/book/update/:id', isLogged, bookController.updateBook);
 
 

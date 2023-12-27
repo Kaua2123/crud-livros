@@ -1,0 +1,33 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<%- include('includes/feedback') %>
+
+<% console.log(books) %>
+<div class="container-flex text-center  p-3 mb-5 bg-body rounded" style="margin-top: 80px; width: 80%; margin-left: auto; margin-right: auto;">
+    <div class="row justify-content-center">
+      <div class="col">
+        <p class="text-center fw-bold" style="font-size: 50px; margin-top: 150px; color: cornflowerblue;">Livraria Online</p>
+        <p class="text-center ">Viaje entre mundos com a sua imaginação</p>
+      </div>
+      <div class="col">
+        <p class="text-center fs-3 fw-bold" style="color: cornflowerblue;">Edite seu livro</p>
+        <p class="text-center">Altere aqui as informações de seu livro.</p>
+        <form class="form" action="/book/update/<%= books._id %>" method="post" style="margin-top: 30px; text-align: left;">
+          <label class="form-label">Nome</label>
+          <input type="text" value="<% books.nome %>" style="margin-left: 5px;" name="nome" class="form-control">
+          <label class="form-label">Gênero</label>
+          <input type="text" value="<% books.genero %>" style="margin-left: 5px;" name="genero" class="form-control">
+          <label class="form-label">Autor</label>
+          <input type="text" value="<% books.autor %>" style="margin-left: 5px;" name="autor" class="form-control">
+          <label class="form-label">Editora</label>
+          <input type="text" value="<% books.editora %>" style="margin-left: 5px;" name="editora" class="form-control">
+          
+          <button type="submit" style="margin-top: 20px; width: 300px; font-weight: bold; " class="btn btn-primary btn-lg">Editar</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+  
+<%- include('includes/footer') %>
